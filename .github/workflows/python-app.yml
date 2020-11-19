@@ -1,4 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
+         # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Python application
@@ -54,5 +54,13 @@ jobs:
       with:
         push: true
         tags: tamerlan1673/my_flask_app:latest
-
-          
+    - name: Restart service
+      uses: fifsky/ssh-action@master
+      with:
+        command: |
+          cd brichev
+          docker-compose --no-ansi pull
+          docker-compose --no-ansi up -d
+        host: ${{ secrets.SSH_HOST }}
+        user: student
+        pass: ${{ secrets.SSH_PASSWORD }}

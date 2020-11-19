@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  flask_app:
+    image: tamerlan1673/my_flask_app
+    ports: 
+    - 5004:5000
